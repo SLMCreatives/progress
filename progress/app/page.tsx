@@ -1,66 +1,91 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Sparkles, Briefcase, TrendingUp, Award, Download, MessageCircle } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useEffect, useState } from "react";
+import {
+  Sparkles,
+  Briefcase,
+  TrendingUp,
+  Award,
+  Download,
+  MessageCircle
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function AlumniProgressionPage() {
   const [params, setParams] = useState({
-    name: "Graduate",
+    name: "Tim",
     diploma: "Diploma in Management",
-    degree: "Bachelor of Business Admin",
+    degree: "Bachelor of Business Administration",
     credits: "30",
-    ec_name: "Sarah",
-    ec_number: "60123456789",
-  })
+    ec_name: "Sulaiman",
+    ec_number: "601121292383",
+    faculty: "FOB"
+  });
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const searchParams = new URLSearchParams(window.location.search)
+      const searchParams = new URLSearchParams(window.location.search);
       setParams({
         name: searchParams.get("name") || "Graduate",
-        diploma: searchParams.get("diploma") || "Diploma in Management",
-        degree: searchParams.get("degree") || "Bachelor of Business Admin",
+        diploma: searchParams.get("diploma") || "Diploma programme",
+        degree:
+          searchParams.get("degree") || "Bachelor of Early Childhood Education",
         credits: searchParams.get("credits") || "30",
         ec_name: searchParams.get("ec_name") || "Sarah",
         ec_number: searchParams.get("ec_number") || "60123456789",
-      })
+        faculty: searchParams.get("faculty") || "FEH"
+      });
     }
-  }, [])
+  }, []);
 
   const handleDownloadVoucher = () => {
-    alert("Voucher downloaded! Contact your education counselor to redeem.")
-  }
+    alert("Voucher downloaded! Contact your education counselor to redeem.");
+  };
 
   const whatsappMessage = encodeURIComponent(
-    `Hi ${params.ec_name}, I am ${params.name} and I want to claim my voucher.`,
-  )
-  const whatsappLink = `https://wa.me/${params.ec_number}?text=${whatsappMessage}`
+    `Hi ${params.ec_name}, I am ${params.name} and I want to claim my voucher.`
+  );
+  const whatsappLink = `https://wa.me/${params.ec_number}?text=${whatsappMessage}`;
 
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white py-16 px-4 sm:py-24">
+      <section className="relative overflow-hidden bg-linear-to-b from-slate-50 to-white py-16 px-4 sm:py-24">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-accent-primary/10 blur-3xl" />
           <div className="absolute top-20 -left-10 h-60 w-60 rounded-full bg-accent-primary/5 blur-3xl" />
         </div>
 
         <div className="relative mx-auto max-w-3xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-primary/10 px-4 py-2 text-sm font-medium text-accent-primary">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-primary/10 px-4 py-2 text-sm font-medium text-primary">
             <Sparkles className="h-4 w-4" />
-            Class of 2024 - Alumni Status Unlocked
+            Class of 2025 - Alumni Status Unlocked
           </div>
 
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
-            Congratulations, <span className="text-accent-primary">{params.name}</span>!
+            Congratulations,{" "}
+            <span className="text-accent-primary">{params.name}</span>!
           </h1>
 
-          <p className="text-pretty text-lg text-slate-600 sm:text-xl">
-            You have officially completed your <strong>{params.diploma}</strong>. <br className="hidden sm:block" />
-            We are proud of you.
+          <p className="text-balance text-lg text-slate-600 sm:text-xl">
+            You have completed your <strong>{params.diploma}</strong>
+            . <br className="hidden sm:block" />
+            We are so proud of you.
           </p>
+          <p className="text-balance text-lg text-slate-600 sm:text-xl pt-6">
+            {`All you need to do now is wait for your results to be officially released.
+            `}
+          </p>
+
+          <Button
+            asChild
+            size="lg"
+            className="mt-8 bg-accent-primary hover:bg-accent-primary/90 font-bold uppercase"
+          >
+            <a href="#next-steps">In The Mean Time</a>
+          </Button>
         </div>
       </section>
 
@@ -81,7 +106,15 @@ export default function AlumniProgressionPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600">
-                  Visit our Career Placement Center for CV help, interview prep, and job matching services.
+                  Visit our{" "}
+                  <Link
+                    href="https://www.unitar.my/university/about-unitar/career-placement-centre/"
+                    target="_blank"
+                    className="underline text-accent-primary"
+                  >
+                    Career Placement Center
+                  </Link>{" "}
+                  for CV help, interview prep, and job matching services.
                 </p>
               </CardContent>
             </Card>
@@ -91,11 +124,14 @@ export default function AlumniProgressionPage() {
                 <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-accent-primary/20">
                   <TrendingUp className="h-6 w-6 text-accent-primary" />
                 </div>
-                <CardTitle className="text-xl text-accent-primary">Ready to Upgrade?</CardTitle>
+                <CardTitle className="text-xl text-accent-primary">
+                  Ready to Upgrade?
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-slate-700">
-                  See your progression advantage below and unlock better career opportunities.
+                  See your progression advantage below and unlock better career
+                  opportunities.
                 </p>
               </CardContent>
             </Card>
@@ -107,10 +143,10 @@ export default function AlumniProgressionPage() {
       <section className="bg-slate-50 py-16 px-4 sm:py-20">
         <div className="mx-auto max-w-5xl">
           <h2 className="mb-4 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Why a Bachelor's Degree Matters
+            {`Why a Bachelor's Degree Matters`}
           </h2>
           <p className="mb-12 text-center text-lg text-slate-600">
-            Don't hit the glass ceiling. Future-proof your career now.
+            {`Don't hit the glass ceiling. Future-proof your career now.`}
           </p>
 
           <div className="grid gap-8 md:grid-cols-2">
@@ -121,30 +157,46 @@ export default function AlumniProgressionPage() {
               <CardContent>
                 <div className="space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-4xl font-bold text-slate-900">RM 2,500</span>
-                    <span className="mb-1 text-sm text-slate-500">/month avg</span>
+                    <span className="text-4xl font-bold text-slate-900">
+                      RM 2,500
+                    </span>
+                    <span className="mb-1 text-sm text-slate-500">
+                      /month avg
+                    </span>
                   </div>
                   <div className="h-3 w-2/3 rounded-full bg-slate-300" />
-                  <p className="text-sm text-slate-600">Entry to mid-level positions</p>
+                  <p className="text-sm text-slate-600">
+                    Entry to mid-level positions
+                  </p>
                 </div>
               </CardContent>
             </Card>
 
             <Card className="border-accent-primary bg-accent-primary/5">
               <CardHeader>
-                <CardTitle className="text-accent-primary">Degree Holder</CardTitle>
+                <CardTitle className="text-accent-primary">
+                  Degree Holder
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   <div className="flex items-end gap-2">
-                    <span className="text-4xl font-bold text-accent-primary">RM 4,200</span>
-                    <span className="mb-1 text-sm text-slate-600">/month avg</span>
+                    <span className="text-4xl font-bold text-accent-primary">
+                      RM 4,200
+                    </span>
+                    <span className="mb-1 text-sm text-slate-600">
+                      /month avg
+                    </span>
                   </div>
                   <div className="h-3 w-full rounded-full bg-accent-primary" />
-                  <p className="text-sm text-slate-700">Management & senior roles</p>
+                  <p className="text-sm text-slate-700">
+                    Management & senior roles
+                  </p>
                   <div className="mt-4 flex items-center gap-2 rounded-lg bg-white px-3 py-2">
                     <TrendingUp className="h-5 w-5 text-accent-primary" />
-                    <span className="text-sm font-medium text-slate-900">+68% higher salary</span>
+                    <span className="text-sm font-medium text-slate-900">
+                      +68% higher salary
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -159,10 +211,12 @@ export default function AlumniProgressionPage() {
           <h2 className="mb-4 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Your Exclusive Fast Track Path
           </h2>
-          <p className="mb-12 text-center text-lg text-slate-600">Skip ahead. Graduate faster. Start earning sooner.</p>
+          <p className="mb-12 text-center text-lg text-slate-600">
+            Skip ahead. Graduate faster. Start earning sooner.
+          </p>
 
           <Card className="border-2 border-accent-primary shadow-lg">
-            <CardHeader className="bg-gradient-to-r from-accent-primary/10 to-accent-primary/5">
+            <CardHeader className="bg-linear-to-r from-accent-primary/10 to-accent-primary/5">
               <CardTitle className="flex items-center gap-2 text-2xl text-slate-900">
                 <Award className="h-6 w-6 text-accent-primary" />
                 Credit Transfer Calculator
@@ -171,23 +225,37 @@ export default function AlumniProgressionPage() {
             <CardContent className="pt-6">
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-slate-600">Eligible Program</p>
-                  <p className="text-xl font-bold text-slate-900">{params.degree}</p>
+                  <p className="text-sm font-medium text-slate-600">
+                    Eligible Program
+                  </p>
+                  <p className="text-xl font-bold text-slate-900">
+                    {params.degree}
+                  </p>
                 </div>
 
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-slate-600">Credits Exempted</p>
-                  <p className="text-xl font-bold text-accent-primary">{params.credits} Credit Hours</p>
+                  <p className="text-sm font-medium text-slate-600">
+                    Credits Exempted
+                  </p>
+                  <p className="text-xl font-bold text-accent-primary">
+                    {params.credits} Credit Hours
+                  </p>
                 </div>
 
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-slate-600">Time Saved</p>
+                  <p className="text-sm font-medium text-slate-600">
+                    Time Saved
+                  </p>
                   <p className="text-xl font-bold text-slate-900">≈ 1 Year</p>
                 </div>
 
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-slate-600">Intake Starts</p>
-                  <p className="text-xl font-bold text-accent-primary">Jan 12, 2025</p>
+                  <p className="text-sm font-medium text-slate-600">
+                    Intake Starts
+                  </p>
+                  <p className="text-xl font-bold text-accent-primary">
+                    Jan 12, 2025
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -201,7 +269,9 @@ export default function AlumniProgressionPage() {
           <h2 className="mb-4 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Your Golden Ticket
           </h2>
-          <p className="mb-12 text-center text-lg text-slate-600">This exclusive offer expires soon. Don't miss out.</p>
+          <p className="mb-12 text-center text-lg text-slate-600">
+            {`This exclusive offer expires soon. Don't miss out.`}
+          </p>
 
           {/* Ticket-style Voucher */}
           <div className="relative">
@@ -219,22 +289,36 @@ export default function AlumniProgressionPage() {
 
                 <div className="mb-6 space-y-3">
                   <div className="flex items-center justify-between border-b border-dashed border-slate-300 pb-3">
-                    <span className="text-sm font-medium text-slate-600">Student:</span>
-                    <span className="font-bold text-slate-900">{params.name}</span>
+                    <span className="text-sm font-medium text-slate-600">
+                      Student:
+                    </span>
+                    <span className="font-bold text-slate-900">
+                      {params.name}
+                    </span>
                   </div>
 
                   <div className="flex items-center justify-between border-b border-dashed border-slate-300 pb-3">
-                    <span className="text-sm font-medium text-slate-600">Offer:</span>
-                    <span className="font-bold text-accent-primary">20% Tuition Discount</span>
+                    <span className="text-sm font-medium text-slate-600">
+                      Offer:
+                    </span>
+                    <span className="font-bold text-accent-primary">
+                      20% Tuition Discount
+                    </span>
                   </div>
 
                   <div className="flex items-center justify-between border-b border-dashed border-slate-300 pb-3">
-                    <span className="text-sm font-medium text-slate-600">Valid Until:</span>
-                    <span className="font-bold text-slate-900">Jan 12, 2025</span>
+                    <span className="text-sm font-medium text-slate-600">
+                      Valid Until:
+                    </span>
+                    <span className="font-bold text-slate-900">
+                      Jan 12, 2025
+                    </span>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-slate-600">Code:</span>
+                    <span className="text-sm font-medium text-slate-600">
+                      Code:
+                    </span>
                     <span className="rounded bg-slate-100 px-3 py-1 font-mono text-sm font-bold text-slate-900">
                       ALUMNI-2025
                     </span>
@@ -261,7 +345,11 @@ export default function AlumniProgressionPage() {
           <p className="text-center text-sm font-medium text-slate-900 sm:text-left sm:text-base">
             Secure this offer now. Limited slots available.
           </p>
-          <Button asChild size="lg" className="w-full gap-2 bg-[#25D366] hover:bg-[#20BA5A] sm:w-auto">
+          <Button
+            asChild
+            size="lg"
+            className="w-full gap-2 bg-[#25D366] hover:bg-[#20BA5A] sm:w-auto"
+          >
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
               <MessageCircle className="h-5 w-5" />
               WhatsApp {params.ec_name} to Claim
@@ -273,5 +361,5 @@ export default function AlumniProgressionPage() {
       {/* Bottom padding to prevent content being hidden by sticky footer */}
       <div className="h-24 sm:h-20" />
     </div>
-  )
+  );
 }
