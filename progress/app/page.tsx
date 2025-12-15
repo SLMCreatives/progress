@@ -45,7 +45,7 @@ export default function AlumniProgressionPage() {
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Hi ${params.ec_name}, I am ${params.name} and I want to claim my voucher.`
+    `Hi ${params.ec_name}, I am ${params.name} and I want to progress into ${params.degree} Could you please tell me what I need to do next.`
   );
   const whatsappLink = `https://wa.me/${params.ec_number}?text=${whatsappMessage}`;
 
