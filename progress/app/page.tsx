@@ -12,6 +12,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
 
 export default function AlumniProgressionPage() {
   const [params, setParams] = useState({
@@ -51,6 +61,13 @@ export default function AlumniProgressionPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Top Bar */}
+      <section className="bg-slate-900 py-2 px-4 text-center text-sm text-slate-200 sticky top-0 z-50">
+        <p>
+          Scroll to Unlock Your{" "}
+          <span className="font-bold">Alumni Benefits Package</span>!
+        </p>
+      </section>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-linear-to-b from-slate-50 to-white py-16 px-4 sm:py-24">
         <div className="absolute inset-0 overflow-hidden">
@@ -72,11 +89,10 @@ export default function AlumniProgressionPage() {
           <p className="text-balance text-lg text-slate-600 sm:text-xl">
             You have completed your <strong>{params.diploma}</strong>
             . <br className="hidden sm:block" />
-            We are so proud of you.
+            We are so proud of you!
           </p>
           <p className="text-balance text-lg text-slate-600 sm:text-xl pt-6">
-            {`All you need to do now is wait for your results to be officially released.
-            `}
+            {`There is a special offer to help you fast-track your journey to a Bachelor's Degree of your choice!`}
           </p>
 
           <Button
@@ -84,8 +100,136 @@ export default function AlumniProgressionPage() {
             size="lg"
             className="mt-8 bg-accent-primary hover:bg-accent-primary/90 font-bold uppercase"
           >
-            <a href="#next-steps">In The Mean Time</a>
+            <a href="#next-steps">Unlock Your Progression Voucher</a>
           </Button>
+        </div>
+      </section>
+
+      {/* Fast Track Offer Section */}
+      <section className="py-16 px-4 sm:py-20">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-4 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Your Exclusive Fast Track Path
+          </h2>
+          <p className="mb-12 text-center text-lg text-slate-600">
+            Skip ahead. Graduate faster. Start earning sooner.
+          </p>
+
+          <Card className="border-2 border-accent-primary shadow-lg">
+            <CardHeader className="bg-linear-to-r from-accent-primary/10 to-accent-primary/5">
+              <CardTitle className="flex items-center gap-2 text-2xl text-slate-900">
+                <Award className="h-6 w-6 text-accent-primary" />
+                Credit Transfer Calculator
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <p className="text-sm font-medium text-slate-600">
+                    Eligible Program
+                  </p>
+                  <Select>
+                    <SelectTrigger className="w-full" value={params.degree}>
+                      <SelectValue
+                        placeholder="Select a program"
+                        className="text-xl font-bold text-slate-900"
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Faculty of Business</SelectLabel>
+                        <SelectItem value="bba">
+                          Bachelor of Business Administration{" "}
+                          <Badge>Most Popular</Badge>
+                        </SelectItem>
+                        <SelectItem value="bba-o">
+                          Bachelor of Business Administration - Online{" "}
+                          <Badge>Most Popular</Badge>
+                        </SelectItem>
+                        <SelectItem value="bhrm">
+                          Bachelor of Human Resourse Management
+                        </SelectItem>
+                        <SelectItem value="bhrm-o">
+                          Bachelor of Human Resourse Management - Online
+                        </SelectItem>
+                        <SelectItem value="bib">
+                          Bachelor of International Business
+                        </SelectItem>
+                        <SelectItem value="bib-o">
+                          Bachelor of International Business - Online
+                        </SelectItem>
+                      </SelectGroup>
+                      <SelectGroup>
+                        <SelectLabel>
+                          Faculty of Education & Humanities
+                        </SelectLabel>
+                        <SelectItem value="bed">
+                          Bachelor of Education
+                        </SelectItem>
+                        <SelectItem value="bed-o">
+                          Bachelor of Education - Online
+                        </SelectItem>
+                        <SelectItem value="bece">
+                          Bachelor of Early Childhood Education
+                        </SelectItem>
+                        <SelectItem value="bece-o">
+                          Bachelor of Early Childhood Education - Online
+                        </SelectItem>
+                        <SelectItem value="bed-tesl">
+                          Bachelor of Education (Teaching of English as a Second
+                          Language)
+                        </SelectItem>
+                      </SelectGroup>
+                      <SelectGroup>
+                        <SelectLabel>
+                          Faculty of AI & Frontier Technology
+                        </SelectLabel>
+                        <SelectItem value="bit">
+                          Bachelor of Information Technology
+                        </SelectItem>
+                        <SelectItem value="bit-o">
+                          Bachelor of Information Technology (Online)
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="grid grid-cols-2 space-y-4">
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-slate-600">
+                      FREE Credit Transfer!
+                    </p>
+                    <p className="text-xl font-bold text-accent-primary">
+                      {params.credits} Credit Hours
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-slate-600">
+                      Time Saved
+                    </p>
+                    <p className="text-xl font-bold text-slate-900">≈ 1 Year</p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-slate-600">
+                      Orientation Date
+                    </p>
+                    <p className="text-xl font-bold text-accent-primary">
+                      9 January 2026
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-slate-600">
+                      Classes Start
+                    </p>
+                    <p className="text-xl font-bold text-accent-primary">
+                      12 January 2026
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
@@ -93,28 +237,40 @@ export default function AlumniProgressionPage() {
       <section className="py-16 px-4 sm:py-20">
         <div className="mx-auto max-w-5xl">
           <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            What is your next move?
+            Are You Ready to Upgrade?
           </h2>
 
           <div className="grid gap-6 md:grid-cols-2">
             <Card className="border-2 transition-all hover:border-slate-300 hover:shadow-lg">
               <CardHeader>
                 <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100">
-                  <Briefcase className="h-6 w-6 text-slate-700" />
+                  <Download className="h-6 w-6 text-slate-700" />
                 </div>
-                <CardTitle className="text-xl">Searching for a Job?</CardTitle>
+                <CardTitle className="text-xl">
+                  1. Download Your Alumni Voucher
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600">
-                  Visit our{" "}
-                  <Link
-                    href="https://www.unitar.my/university/about-unitar/career-placement-centre/"
-                    target="_blank"
-                    className="underline text-accent-primary"
-                  >
-                    Career Placement Center
-                  </Link>{" "}
-                  for CV help, interview prep, and job matching services.
+                  Choose your preferred degree program and download your
+                  exclusive Alumni Progression Voucher below.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 transition-all hover:border-slate-300 hover:shadow-lg">
+              <CardHeader>
+                <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100">
+                  <Download className="h-6 w-6 text-slate-700" />
+                </div>
+                <CardTitle className="text-xl">
+                  2. Contact Your Education Counselor to Redeem Your Voucher
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600">
+                  Reach out to your education counselor via WhatsApp to claim
+                  your offer and fast-track your application.
                 </p>
               </CardContent>
             </Card>
@@ -205,64 +361,6 @@ export default function AlumniProgressionPage() {
         </div>
       </section>
 
-      {/* Fast Track Offer Section */}
-      <section className="py-16 px-4 sm:py-20">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="mb-4 text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Your Exclusive Fast Track Path
-          </h2>
-          <p className="mb-12 text-center text-lg text-slate-600">
-            Skip ahead. Graduate faster. Start earning sooner.
-          </p>
-
-          <Card className="border-2 border-accent-primary shadow-lg">
-            <CardHeader className="bg-linear-to-r from-accent-primary/10 to-accent-primary/5">
-              <CardTitle className="flex items-center gap-2 text-2xl text-slate-900">
-                <Award className="h-6 w-6 text-accent-primary" />
-                Credit Transfer Calculator
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pt-6">
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-slate-600">
-                    Eligible Program
-                  </p>
-                  <p className="text-xl font-bold text-slate-900">
-                    {params.degree}
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-slate-600">
-                    Credits Exempted
-                  </p>
-                  <p className="text-xl font-bold text-accent-primary">
-                    {params.credits} Credit Hours
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-slate-600">
-                    Time Saved
-                  </p>
-                  <p className="text-xl font-bold text-slate-900">≈ 1 Year</p>
-                </div>
-
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-slate-600">
-                    Intake Starts
-                  </p>
-                  <p className="text-xl font-bold text-accent-primary">
-                    Jan 12, 2025
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       {/* Voucher Section */}
       <section className="bg-slate-50 py-16 px-4 sm:py-20">
         <div className="mx-auto max-w-3xl">
@@ -277,8 +375,8 @@ export default function AlumniProgressionPage() {
           <div className="relative">
             <div className="rounded-lg border-4 border-dashed border-accent-primary bg-white p-8 shadow-xl">
               {/* Perforated circles on sides */}
-              <div className="absolute -left-4 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-slate-50" />
-              <div className="absolute -right-4 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-slate-50" />
+              <div className="absolute -left-4 top-1/2 h-2 w-8 -translate-y-1/2 rounded-full bg-slate-50" />
+              <div className="absolute -right-4 top-1/2 h-2 w-8 -translate-y-1/2 rounded-full bg-slate-50" />
 
               <div className="text-center">
                 <div className="mb-6 inline-flex rounded-lg bg-accent-primary px-4 py-2">
@@ -302,7 +400,7 @@ export default function AlumniProgressionPage() {
                       Offer:
                     </span>
                     <span className="font-bold text-accent-primary">
-                      20% Tuition Discount
+                      20% Tuition Discount + Free Credit Transfer
                     </span>
                   </div>
 
