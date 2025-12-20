@@ -209,7 +209,7 @@ function Section1({
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-xl md:text-2xl text-white/80 mb-4 max-w-3xl mx-auto leading-relaxed"
+          className="text-xl md:text-2xl text-white/80 mb-4 max-w-3xl mx-auto leading-relaxed text-balance"
         >
           You've completed your{" "}
           <strong className="text-[#06B6D4]">{params.diploma}</strong>
@@ -425,7 +425,7 @@ function Section3() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
@@ -538,7 +538,7 @@ function Section4({ params, handleScrollToCTA }: any) {
                   className="inline-flex mb-6"
                 >
                   <Badge className="text-lg px-8 py-3 bg-gradient-to-r from-[#FF6B6B] via-[#A855F7] to-[#06B6D4] border-none text-white font-bold">
-                    🎓 ALUMNI PROGRESSION VOUCHER
+                    🎓 EXCLUSIVE VOUCHER
                   </Badge>
                 </motion.div>
 
@@ -547,7 +547,7 @@ function Section4({ params, handleScrollToCTA }: any) {
                     <span className="text-slate-600 font-semibold">
                       Student:
                     </span>
-                    <span className="text-slate-900 font-bold text-lg">
+                    <span className="text-slate-900 font-bold text-md">
                       {params.name}
                     </span>
                   </div>
@@ -555,7 +555,7 @@ function Section4({ params, handleScrollToCTA }: any) {
                     <span className="text-slate-600 font-semibold">
                       Programme:
                     </span>
-                    <span className="text-[#A855F7] font-bold text-lg text-balance text-right">
+                    <span className="text-[#A855F7] font-bold text-md text-balance text-right">
                       Bachelor of Education
                     </span>
                   </div>
@@ -563,7 +563,7 @@ function Section4({ params, handleScrollToCTA }: any) {
                     <span className="text-slate-600 font-semibold">
                       Discount:
                     </span>
-                    <span className="text-[#A855F7] font-bold text-lg text-balance text-right">
+                    <span className="text-[#A855F7] font-bold text-md text-balance text-right">
                       20% Tuition Fee Waiver
                     </span>
                   </div>
@@ -571,7 +571,7 @@ function Section4({ params, handleScrollToCTA }: any) {
                     <span className="text-slate-600 font-semibold">
                       FREE Credit Transfer:
                     </span>
-                    <span className="text-[#06B6D4] font-bold text-lg">
+                    <span className="text-[#06B6D4] font-bold text-md">
                       up to 10 credits
                     </span>
                   </div>
@@ -579,7 +579,7 @@ function Section4({ params, handleScrollToCTA }: any) {
                     <span className="text-slate-600 font-semibold">
                       Valid Until:
                     </span>
-                    <span className="text-[#FF6B6B] font-bold text-lg">
+                    <span className="text-[#FF6B6B] font-bold text-md">
                       7th January 2026
                     </span>
                   </div>
