@@ -5,9 +5,7 @@ import { motion, useScroll, useTransform, useInView } from "motion/react";
 import {
   Sparkles,
   Award,
-  Download,
   MessageCircle,
-  GraduationCap,
   TrendingUp,
   Users,
   Zap,
@@ -17,12 +15,24 @@ import {
   Star,
   Lock,
   Unlock,
-  ArrowDownCircle
+  X,
+  Check
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 export default function AlumniProgressionPage() {
   const [params, setParams] = useState({
@@ -33,6 +43,12 @@ export default function AlumniProgressionPage() {
     ec_name: "Sulaiman",
     ec_number: "601121292383",
     faculty: "FOB"
+  });
+
+  const [selectedProgramme, setSelectedProgramme] = useState({
+    name: "Bachelor of Business Administration (Hons)",
+    price: 45000,
+    credits: 10
   });
 
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -99,6 +115,18 @@ export default function AlumniProgressionPage() {
       {/* Section 4: Voucher Download */}
       <Section4 params={params} handleScrollToCTA={handleScrollToCTA} />
 
+      {/* <ProgrammeSelection
+        selectedProgramme={selectedProgramme}
+        setSelectedProgramme={setSelectedProgramme}
+        params={params}
+      /> */}
+
+      <PricingComparison
+        params={params}
+        selectedProgramme={selectedProgramme}
+        setSelectedProgramme={setSelectedProgramme}
+      />
+
       {/* Section 5: WhatsApp CTA */}
       <Section5 params={params} whatsappLink={whatsappLink} />
 
@@ -108,7 +136,7 @@ export default function AlumniProgressionPage() {
   );
 }
 
-// Section 1: Hero
+// Section 1: Hero - Congrats & Scroll to Unlock
 function Section1({
   params,
   scrollProgress
@@ -222,7 +250,7 @@ function Section1({
           className="text-lg md:text-xl text-white/70 mb-12 max-w-2xl mx-auto text-balance"
         >
           There's a special offer waiting for you below. Keep scrolling to
-          unlock your exclusive Alumni Voucher! 👇
+          unlock your exclusive Alumni Voucher up to RM 9,000!! 👇
         </motion.p>
 
         <motion.div
@@ -251,8 +279,8 @@ function Section1({
               </p>
             </motion.div>
           ) : (
-            <p className="text-white/60 text-sm">
-              Scroll down to unlock your benefits
+            <p className="text-white/60 text-sm text-balance">
+              Scroll to unlock your exclusive voucher 🎟️
             </p>
           )}
         </motion.div>
@@ -279,7 +307,7 @@ function Section2({ params }: any) {
           className="text-center mb-16"
         >
           <Badge className="mb-4 text-lg px-6 py-2 bg-gradient-to-r from-[#A855F7] to-[#06B6D4] border-none text-white">
-            💌 Message from your Faculty
+            Message from your Faculty
           </Badge>
           <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6">
             We're So Proud of You!
@@ -362,13 +390,13 @@ function Section3() {
   const isInView = useInView(ref, { once: false, amount: 0.2 });
 
   const benefits = [
-    {
+    /* {
       icon: Zap,
       title: "Free Credit Transfer",
       description:
         "Get up to 10 credit hours transferred for FREE and save up to RM1,500!",
       color: "#FFD700"
-    },
+    }, */
     {
       icon: Award,
       title: "Industry Recognition",
@@ -543,64 +571,615 @@ function Section4({ params, handleScrollToCTA }: any) {
                 </motion.div>
 
                 <div className="space-y-4 mb-8">
-                  <div className="flex justify-between items-center py-3 border-b-2 border-dashed border-slate-300">
-                    <span className="text-slate-600 font-semibold">
-                      Student:
+                  {/* <div className="flex justify-between items-center p-4 bg-slate-50 rounded-lg">
+                    <span className="text-lg font-semibold text-slate-700">
+                      Free Credit Transfer:
                     </span>
-                    <span className="text-slate-900 font-bold text-md">
-                      {params.name}
+                    <span className="text-2xl font-black text-[#10B981]">
+                      Up to RM 1,500
                     </span>
-                  </div>
-                  <div className="flex justify-between items-center py-3 border-b-2 border-dashed border-slate-300">
-                    <span className="text-slate-600 font-semibold">
-                      Programme:
+                  </div> */}
+
+                  {/* <div className="flex justify-between items-center p-4 bg-slate-50 rounded-lg">
+                    <span className="text-lg font-semibold text-slate-700">
+                      20% Tuition Fee Waiver:
                     </span>
-                    <span className="text-[#A855F7] font-bold text-md text-balance text-right">
-                      Bachelor of Education
+                    <span className="text-2xl font-black text-[#FF6B6B]">
+                      Up to RM 9,000
                     </span>
-                  </div>
-                  <div className="flex justify-between items-center py-3 border-b-2 border-dashed border-slate-300">
-                    <span className="text-slate-600 font-semibold">
-                      Discount:
+                  </div> */}
+
+                  <div className="flex justify-between items-center p-6 bg-gradient-to-r from-[#A855F7] to-[#06B6D4] rounded-lg border-4 border-dashed border-[#FFD700]">
+                    <span className="text-lg font-bold text-white">
+                      20% Tuition Fee Waiver:
                     </span>
-                    <span className="text-[#A855F7] font-bold text-md text-balance text-right">
-                      20% Tuition Fee Waiver
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center py-3 border-b-2 border-dashed border-slate-300">
-                    <span className="text-slate-600 font-semibold">
-                      FREE Credit Transfer:
-                    </span>
-                    <span className="text-[#06B6D4] font-bold text-md">
-                      up to 10 credits
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center py-3 border-b-2 border-dashed border-slate-300">
-                    <span className="text-slate-600 font-semibold">
-                      Valid Until:
-                    </span>
-                    <span className="text-[#FF6B6B] font-bold text-md">
-                      7th January 2026
+                    <span className="text-3xl font-black text-white">
+                      Up to RM 9,000
                     </span>
                   </div>
                 </div>
 
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <div className="space-y-3 text-left mb-8">
+                  {[
+                    "✨ Exclusive for alumni",
+                    "⚡ Limited time offer",
+                    "🎯 Fast-track application",
+                    "💼 Career-ready curriculum"
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.4 + i * 0.1 }}
+                      className="flex items-center gap-3 text-slate-700"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0" />
+                      <span className="font-medium">{item}</span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <p className="text-sm text-slate-500 mb-6">
+                  Valid for {params.degree} • January 2026 Intake
+                </p>
+
+                <Button
+                  onClick={handleScrollToCTA}
+                  size="lg"
+                  className="w-full text-xl py-6 bg-gradient-to-r from-[#10B981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-black shadow-xl"
                 >
-                  <Button
-                    onClick={handleScrollToCTA}
-                    size="lg"
-                    className="w-full md:w-auto text-lg px-8 py-6 bg-linear-to-r from-[#A855F7] to-[#06B6D4] hover:from-[#9333EA] hover:to-[#0891B2] text-white font-bold shadow-xl"
-                  >
-                    Secure Your Spot Now!
-                    <ArrowDown className="w-10 h-10 ml-2" />
-                  </Button>
-                </motion.div>
+                  Claim Your Voucher Now
+                  <ArrowDown className="w-6 h-6 ml-2" />
+                </Button>
               </div>
             </CardContent>
           </Card>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function ProgrammeSelection({
+  selectedProgramme,
+  setSelectedProgramme,
+  params
+}: any) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
+  const programmes = [
+    {
+      name: "Bachelor of Business Administration (Hons)",
+      price: 45000,
+      credits: 10,
+      duration: "3 years",
+      faculty: "FOB"
+    },
+    {
+      name: "Bachelor of Accounting (Hons)",
+      price: 48000,
+      credits: 10,
+      duration: "3 years",
+      faculty: "FOB"
+    },
+    {
+      name: "Bachelor of Marketing (Hons)",
+      price: 44000,
+      credits: 10,
+      duration: "3 years",
+      faculty: "FOB"
+    },
+    {
+      name: "Bachelor of Early Childhood Education (Hons)",
+      price: 42000,
+      credits: 10,
+      duration: "3.5 years",
+      faculty: "FEH"
+    },
+    {
+      name: "Bachelor of Education (TESL) (Hons)",
+      price: 43000,
+      credits: 10,
+      duration: "3.5 years",
+      faculty: "FEH"
+    },
+    {
+      name: "Bachelor of Psychology (Hons)",
+      price: 46000,
+      credits: 10,
+      duration: "3 years",
+      faculty: "FEH"
+    }
+  ];
+
+  return (
+    <section
+      ref={ref}
+      id="programme-selection"
+      className="relative min-h-[80vh] flex items-center justify-center px-4 py-16 md:py-20 bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A]"
+    >
+      {/* Animated background elements */}
+      <motion.div
+        className="absolute top-20 right-10 w-96 h-96 bg-[#06B6D4]/20 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.3, 0.5, 0.3]
+        }}
+        transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY }}
+      />
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-8 md:mb-16"
+        >
+          <Badge className="mb-4 text-base md:text-lg px-4 md:px-6 py-2 bg-gradient-to-r from-[#06B6D4] to-[#A855F7] border-none text-white">
+            🎓 Choose Your Programme
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 px-2">
+            Select Your Next Step, {params.name}
+          </h2>
+          <p className="text-base md:text-lg lg:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed text-balance px-2">
+            Pick the programme you want to progress to and see your personalized
+            pricing
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 px-10">
+          {programmes.map((programme, index) => {
+            const isSelected = selectedProgramme.name === programme.name;
+
+            return (
+              <motion.div
+                key={programme.name}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                whileHover={{ scale: 1.02, y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setSelectedProgramme(programme)}
+                className="cursor-pointer group"
+              >
+                <Card
+                  className={`h-full transition-all duration-300 ${
+                    isSelected
+                      ? "border-4 border-[#06B6D4] bg-gradient-to-br from-[#06B6D4]/20 to-[#A855F7]/20 shadow-2xl"
+                      : "border-2 border-white/10 bg-white/5 backdrop-blur-sm hover:border-white/30"
+                  }`}
+                >
+                  <CardContent className="p-5 md:p-6 relative">
+                    {isSelected && (
+                      <motion.div
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{
+                          type: "spring",
+                          duration: 0.4,
+                          bounce: 0.3
+                        }}
+                        className="absolute top-4 right-4"
+                      >
+                        <div className="w-10 h-10 rounded-full bg-[#10B981] flex items-center justify-center">
+                          <CheckCircle2 className="w-6 h-6 text-white" />
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* <div className="mb-4">
+                      <Badge
+                        variant="outline"
+                        className={`text-xs px-3 py-1 ${
+                          isSelected
+                            ? "border-[#06B6D4] text-[#06B6D4]"
+                            : "border-white/30 text-white/70"
+                        }`}
+                      >
+                        {programme.faculty}
+                      </Badge>
+                    </div> */}
+
+                    <h3
+                      className={`text-2xl md:text-xl font-bold mb-4 leading-tight ${
+                        isSelected ? "text-[#06B6D4]" : "text-white"
+                      }`}
+                    >
+                      {programme.name}
+                    </h3>
+
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-center justify-between pt-3 border-t border-white/10">
+                        <span className="text-white/70 text-sm">Duration:</span>
+                        <span className="text-lg md:text-2xl font-black text-white">
+                          {programme.duration}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between pt-3 border-t border-white/10">
+                        <span className="text-white/70 text-sm">
+                          Programme Fee:
+                        </span>
+                        <span className="text-lg md:text-2xl font-black text-white">
+                          RM {programme.price.toLocaleString()}
+                        </span>
+                      </div>
+                    </div>
+
+                    <Button
+                      className={`w-full ${
+                        isSelected
+                          ? "bg-[#06B6D4] hover:bg-[#0891b2] text-white"
+                          : "bg-white/10 hover:bg-white/20 text-white border border-white/30"
+                      }`}
+                    >
+                      {isSelected ? "Selected" : "Select Programme"}
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="text-center mt-8 md:mt-12"
+        >
+          <p className="text-white/70 mb-4 md:mb-6 text-base md:text-lg px-2">
+            Selected:{" "}
+            <span className="text-[#06B6D4] font-bold">
+              {selectedProgramme.name}
+            </span>
+          </p>
+          <Button
+            onClick={() => {
+              window.scrollTo({
+                top:
+                  document.getElementById("pricing-comparison")?.offsetTop || 0,
+                behavior: "smooth"
+              });
+            }}
+            size="lg"
+            className="w-full md:w-auto text-base md:text-lg px-6 md:px-8 py-5 md:py-6 bg-gradient-to-r from-[#06B6D4] to-[#A855F7] hover:from-[#0891b2] hover:to-[#9333EA] text-white font-bold shadow-xl"
+          >
+            View Your Personalized Pricing
+            <ArrowDown className="w-5 h-5 md:w-6 md:h-6 ml-2" />
+          </Button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function PricingComparison({
+  params,
+  selectedProgramme,
+  setSelectedProgramme
+}: any) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
+
+  const programmePrice = selectedProgramme.price;
+  const discount20Percent = programmePrice * 0.2;
+  const normalTotal = programmePrice;
+  const discountedTotal = programmePrice - discount20Percent;
+  const totalSavings = discount20Percent;
+  const fobprogrammes = [
+    {
+      name: "Bachelor of Business Administration (Hons)",
+      price: 45000,
+      duration: "3 years",
+      faculty: "FOB"
+    },
+    {
+      name: "Bachelor of Business Administration (Hons) - Online",
+      price: 40800,
+      duration: "3 years",
+      faculty: "FOB"
+    },
+    {
+      name: "Bachelor in International Business (Honours)",
+      price: 45000,
+      duration: "3 years",
+      faculty: "FOB"
+    },
+    {
+      name: "Bachelor in International Business (Honours) - Online",
+      price: 40800,
+      duration: "3 years",
+      faculty: "FOB"
+    }
+  ];
+  const fehprogrammes = [
+    {
+      name: "Bachelor of Education (Hons)",
+      price: 45000,
+      duration: "3 years",
+      faculty: "FEH"
+    },
+    {
+      name: "Bachelor of Education (Hons) - Online",
+      price: 40800,
+      duration: "3 years",
+      faculty: "FEH"
+    },
+    {
+      name: "Bachelor of Education (Early Childhood Education) (Hons)",
+      price: 45000,
+      duration: "3 years",
+      faculty: "FEH"
+    },
+    {
+      name: "Bachelor of Education (Early Childhood Education) (Hons) - Online",
+      price: 40800,
+      duration: "3 years",
+      faculty: "FEH"
+    }
+  ];
+
+  return (
+    <section
+      ref={ref}
+      id="pricing-comparison"
+      className="relative min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-br from-white via-[#FFF7ED] to-white overflow-hidden"
+    >
+      {/* Decorative elements */}
+      <motion.div
+        className="absolute top-20 left-10 w-72 h-72 bg-[#FF6B6B]/10 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3]
+        }}
+        transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-10 w-96 h-96 bg-[#A855F7]/10 rounded-full blur-3xl"
+        animate={{
+          scale: [1.2, 1, 1.2],
+          opacity: [0.3, 0.5, 0.3]
+        }}
+        transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY }}
+      />
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <Badge className="mb-4 text-lg px-6 py-2 bg-gradient-to-r from-[#FF6B6B] to-[#A855F7] border-none text-white">
+            💰 Investment Comparison
+          </Badge>
+          <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 text-balance">
+            See How Much You'll Save
+          </h2>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed text-balance">
+            Compare the normal price with your exclusive alumni benefits. Select
+            your preferred programme below to see your personalized pricing!
+          </p>
+
+          <div className="flex flex-col md:flex-row items-center justify-center mt-6 md:mt-8">
+            <Label className="mt-8 text-slate-700 font-bold text-xl">
+              Choose Preferred Programme:
+            </Label>
+            <Select
+              onValueChange={(value) => {
+                const programme = [...fobprogrammes, ...fehprogrammes].find(
+                  (prog) => prog.name === value
+                );
+                if (programme) {
+                  setSelectedProgramme(programme);
+                }
+              }}
+            >
+              <SelectTrigger className="max-w-fit mx-auto mt-6 w-full bg-white border border-slate-300">
+                <SelectValue placeholder="Select Programme" />
+              </SelectTrigger>
+              <SelectContent align="center">
+                <SelectGroup>
+                  <SelectLabel>Faculty of Business (FOB)</SelectLabel>
+                  {fobprogrammes.map((programme) => (
+                    <SelectItem key={programme.name} value={programme.name}>
+                      {programme.name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+                <SelectSeparator />
+                <SelectGroup>
+                  <SelectLabel>
+                    Faculty of Education & Humanities (FEH)
+                  </SelectLabel>
+                  {fehprogrammes.map((programme) => (
+                    <SelectItem key={programme.name} value={programme.name}>
+                      {programme.name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* Normal Price Card */}
+          {/*  <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <Card className="relative border-2 border-slate-300 shadow-lg overflow-hidden h-full">
+              <div className="absolute top-0 left-0 right-0 h-2 bg-slate-400" />
+              <CardContent className="p-8">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                    Normal Price
+                  </h3>
+                  <p className="text-slate-600">Standard programme cost</p>
+                </div>
+
+                <div className="space-y-6 mb-8">
+                  <div className="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <span className="text-slate-700 font-medium">
+                      Programme Fee
+                    </span>
+                    <span className="text-xl font-bold text-slate-900">
+                      RM {programmePrice.toLocaleString()}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <span className="text-slate-700 font-medium flex items-center gap-2">
+                      <X className="w-5 h-5 text-red-500" />
+                      Discount
+                    </span>
+                    <span className="text-xl font-bold text-slate-400">
+                      RM 0
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <span className="text-slate-700 font-medium flex items-center gap-2">
+                      <X className="w-5 h-5 text-red-500" />
+                      Credit Transfer
+                    </span>
+                    <span className="text-xl font-bold text-slate-400">
+                      RM 0
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-slate-100 rounded-lg p-6 text-center">
+                  <p className="text-sm text-slate-600 mb-2">Total Cost</p>
+                  <p className="text-4xl font-black text-slate-900">
+                    RM {normalTotal.toLocaleString()}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+ */}
+          {/* Alumni Price Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative"
+          >
+            {/* Popular Badge */}
+            <motion.div
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              className="absolute -top-4 left-1/2 -translate-x-1/2 z-10"
+            >
+              <Badge className="text-base px-6 py-2 bg-gradient-to-r from-[#10B981] to-[#059669] border-none text-white font-bold shadow-lg">
+                ⭐ BEST VALUE
+              </Badge>
+            </motion.div>
+
+            <Card className="relative border-4 border-[#10B981] shadow-2xl overflow-hidden h-full">
+              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#10B981] via-[#A855F7] to-[#06B6D4]" />
+              <CardContent className="p-8">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                    Alumni Price For:
+                  </h3>
+                  <p className="bg-[#10B981] px-4 py-2 inline-block rounded-full text-white font-medium text-balance">
+                    {selectedProgramme.name}
+                  </p>
+                </div>
+
+                <div className="space-y-6 mb-8">
+                  <div className="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <span className="text-slate-700 font-medium">
+                      Normal Programme Fee
+                    </span>
+                    <span className="text-xl font-bold text-slate-900">
+                      RM {programmePrice.toLocaleString()}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <span className="text-[#10B981] font-medium flex items-center gap-2">
+                      <Check className="w-5 h-5" />
+                      20% Tuition Fee Waiver
+                    </span>
+                    <span className="text-xl font-bold text-[#10B981]">
+                      - RM {discount20Percent.toLocaleString()}
+                    </span>
+                  </div>
+
+                  {/* <div className="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <span className="text-[#A855F7] font-medium flex items-center gap-2">
+                      <Check className="w-5 h-5" />
+                      FREE Credit Transfer
+                    </span>
+                    <span className="text-xl font-bold text-[#A855F7] text-right">
+                      - RM {creditTransferValue.toLocaleString()}
+                    </span>
+                  </div> */}
+                </div>
+
+                <div className="bg-gradient-to-br from-[#10B981] to-[#059669] rounded-lg p-6 text-center mb-4">
+                  <p className="text-sm text-white mb-2">
+                    🏷️ Price After Discount
+                  </p>
+                  <p className="text-4xl font-black text-white">
+                    RM {discountedTotal.toLocaleString()}
+                  </p>
+                </div>
+
+                <motion.div
+                  animate={{ scale: [1, 1.02, 1] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Number.POSITIVE_INFINITY
+                  }}
+                  className="bg-[#FFD700]/20 border-2 border-[#FFD700] rounded-lg p-4 text-center"
+                >
+                  <p className="text-sm font-semibold text-slate-700 mb-1">
+                    🎉 Total Savings
+                  </p>
+                  <p className="text-3xl font-black text-[#FF6B6B]">
+                    RM {totalSavings.toLocaleString()}
+                  </p>
+                </motion.div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-center mt-12"
+        >
+          <p className="text-slate-600 mb-6 text-lg text-balance">
+            💎 This exclusive offer is only available for alumni like you,{" "}
+            {params.name}!
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            {[
+              "Limited time offer",
+              "January 2026 intake only",
+              "Subject to terms & conditions"
+            ].map((note, i) => (
+              <motion.div
+                key={note}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: 0.8 + i * 0.1 }}
+              >
+                <Badge variant="outline" className="text-sm px-4 py-2">
+                  {note}
+                </Badge>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
@@ -717,7 +1296,6 @@ function Section6({ whatsappLink, params }: any) {
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
               { number: "50+", label: "Seats Left" },
-              { number: "RM 0", label: "Crefit Transfer" },
               { number: "20%", label: "Tuition Fee Waiver" }
             ].map((stat, i) => (
               <motion.div
