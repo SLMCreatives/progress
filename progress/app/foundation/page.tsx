@@ -409,12 +409,12 @@ function Section3() {
       description: "Join 50,000+ successful alumni across Malaysia and beyond",
       color: "#06B6D4"
     },
-    {
+    /*  {
       icon: TrendingUp,
       title: "Career Growth",
       description: "68% higher starting salary with a bachelor's degree",
       color: "#10B981"
-    },
+    }, */
     {
       icon: Heart,
       title: "Flexible Learning",
@@ -453,7 +453,7 @@ function Section3() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
@@ -962,7 +962,7 @@ function PricingComparison({
             your preferred programme below to see your personalized pricing!
           </p>
 
-          <div className="flex flex-col md:flex-row items-center justify-center mt-6 md:mt-8">
+          <div className="flex flex-col items-center justify-center mt-6">
             <Label className="mt-8 text-slate-700 font-bold text-xl">
               Choose Preferred Programme:
             </Label>
@@ -1006,10 +1006,11 @@ function PricingComparison({
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Normal Price Card */}
-          {/*  <motion.div
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="hidden md:block"
           >
             <Card className="relative border-2 border-slate-300 shadow-lg overflow-hidden h-full">
               <div className="absolute top-0 left-0 right-0 h-2 bg-slate-400" />
@@ -1041,7 +1042,7 @@ function PricingComparison({
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center pb-4 border-b border-slate-200">
+                  {/*   <div className="flex justify-between items-center pb-4 border-b border-slate-200">
                     <span className="text-slate-700 font-medium flex items-center gap-2">
                       <X className="w-5 h-5 text-red-500" />
                       Credit Transfer
@@ -1049,7 +1050,7 @@ function PricingComparison({
                     <span className="text-xl font-bold text-slate-400">
                       RM 0
                     </span>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="bg-slate-100 rounded-lg p-6 text-center">
@@ -1061,7 +1062,7 @@ function PricingComparison({
               </CardContent>
             </Card>
           </motion.div>
- */}
+
           {/* Alumni Price Card */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -1293,7 +1294,7 @@ function Section6({ whatsappLink, params }: any) {
             NOW before it's too late! ⏰
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
             {[
               { number: "50+", label: "Seats Left" },
               { number: "20%", label: "Tuition Fee Waiver" }
@@ -1335,7 +1336,7 @@ function Section6({ whatsappLink, params }: any) {
                   rel="noopener noreferrer"
                 >
                   <MessageCircle className="w-7 h-7 mr-3" />
-                  Claim Your Spot - WhatsApp {params.ec_name}
+                  Claim Your Spot Today!
                 </a>
               </Button>
             </motion.div>

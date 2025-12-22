@@ -963,7 +963,8 @@ function PricingComparison({
             your preferred programme below to see your personalized pricing!
           </p>
 
-          <div className="flex flex-col md:flex-row items-center justify-center mt-6 md:mt-8">
+          <div className="flex flex-col items-center justify-center mt-6">
+            {" "}
             <Label className="mt-8 text-slate-700 font-bold text-xl">
               Choose Preferred Programme:
             </Label>
@@ -1007,10 +1008,11 @@ function PricingComparison({
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Normal Price Card */}
-          {/*  <motion.div
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="hidden md:block"
           >
             <Card className="relative border-2 border-slate-300 shadow-lg overflow-hidden h-full">
               <div className="absolute top-0 left-0 right-0 h-2 bg-slate-400" />
@@ -1062,7 +1064,7 @@ function PricingComparison({
               </CardContent>
             </Card>
           </motion.div>
- */}
+
           {/* Alumni Price Card */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -1096,7 +1098,7 @@ function PricingComparison({
                 <div className="space-y-6 mb-8">
                   <div className="flex justify-between items-center pb-4 border-b border-slate-200">
                     <span className="text-slate-700 font-medium">
-                      Normal Programme Fee
+                      Programme Fee
                     </span>
                     <span className="text-xl font-bold text-slate-900">
                       RM {programmePrice.toLocaleString()}
