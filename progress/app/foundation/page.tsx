@@ -1247,7 +1247,7 @@ function Section5({ params, whatsappLink }: any) {
           >
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
               <MessageCircle className="w-7 h-7 mr-3" />
-              WhatsApp {params.ec_name} Now
+              WhatsApp {params.ec_name.split(" ")[0]} Now
             </a>
           </Button>
         </motion.div>
