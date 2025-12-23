@@ -1245,11 +1245,11 @@ function Section5({ params, whatsappLink }: any) {
           <Button
             asChild
             size="lg"
-            className="text-xl px-12 py-8 bg-white hover:bg-slate-100 text-[#10B981] font-black shadow-2xl rounded-2xl"
+            className="text-lg px-12 py-8 bg-white hover:bg-slate-100 text-[#10B981] font-black shadow-2xl rounded-2xl"
           >
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="w-7 h-7 mr-3" />
-              WhatsApp {params.ec_name} Now
+              <MessageCircle className="w-7 h-7 mr-3 text-balance" />
+              WhatsApp {params.ec_name.split(" ")[0]} Now
             </a>
           </Button>
         </motion.div>
