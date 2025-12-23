@@ -1328,7 +1328,7 @@ function Section6({ whatsappLink, params }: any) {
               <Button
                 asChild
                 size="lg"
-                className="text-xl px-12 py-8 bg-gradient-to-r from-[#10B981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-black shadow-2xl rounded-2xl"
+                className="text-lg px-12 py-8 bg-gradient-to-r from-[#10B981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-black shadow-2xl rounded-2xl"
               >
                 <a
                   href={whatsappLink}

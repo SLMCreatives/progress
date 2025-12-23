@@ -1331,7 +1331,7 @@ function Section6({ whatsappLink, params }: any) {
               <Button
                 asChild
                 size="lg"
-                className="text-xl px-12 py-8 bg-gradient-to-r from-[#10B981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-black shadow-2xl rounded-2xl"
+                className="text-lg px-12 py-8 bg-gradient-to-r from-[#10B981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-black shadow-2xl rounded-2xl"
               >
                 <a
                   href={whatsappLink}
@@ -1339,7 +1339,7 @@ function Section6({ whatsappLink, params }: any) {
                   rel="noopener noreferrer"
                 >
                   <MessageCircle className="w-7 h-7 mr-3" />
-                  Claim Your Spot - WhatsApp {params.ec_name}
+                  Claim Your Spot Today!
                 </a>
               </Button>
             </motion.div>
