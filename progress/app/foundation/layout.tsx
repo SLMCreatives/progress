@@ -9,9 +9,22 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "UNITAR Alumni Progression - Unlock Your Future",
+  title: "Progress with UNITAR & Save Up To RM9,000!",
   description:
-    "Exclusive alumni voucher for diploma graduates. Fast-track your Bachelor's degree with credit transfer and special discounts.",
+    "Exclusive alumni voucher for foundation graduates. Fast-track your Bachelor's degree with special discounts.",
+  openGraph: {
+    title: "Progress with UNITAR & Save Up To RM9,000!",
+    description:
+      "Exclusive alumni voucher for foundation graduates. Fast-track your Bachelor's degree with special discounts.",
+    images: [
+      {
+        url: "/preview.jpg",
+        width: 1200,
+        height: 630,
+        alt: "UNITAR Alumni Progression - Foundation"
+      }
+    ]
+  },
   icons: {
     icon: [
       {
@@ -45,7 +58,7 @@ export default function RootLayout({
         >
           <Image
             src="/UIU_logo.png"
-            alt="UNITAR Alumni Progression"
+            alt="UNITAR Alumni Progression - Foundation"
             width={100}
             height={100}
             className="object-contain h-10 w-auto mt-1"
