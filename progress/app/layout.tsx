@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import Script from "next/dist/client/script";
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -31,6 +32,8 @@ export const metadata: Metadata = {
   }
 };
 
+const projectID = "uqba6wj284";
+
 export default function RootLayout({
   children
 }: Readonly<{
@@ -40,7 +43,18 @@ export default function RootLayout({
     <html lang="en">
       <GoogleTagManager gtmId="G-F8XEQPNCWS" />
       <GoogleAnalytics gaId="G-F8XEQPNCWS" />
-      <body className={`font-sans antialiased`}>{children}</body>
+      <body className={`font-sans antialiased`}>
+        <Script id="clarity-script" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${projectID}");
+          `}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }
