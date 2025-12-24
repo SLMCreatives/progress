@@ -33,6 +33,7 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export default function AlumniProgressionPage() {
   const [params, setParams] = useState({
@@ -97,6 +98,7 @@ export default function AlumniProgressionPage() {
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
+      <GoogleAnalytics gaId="G-F8XEQPNCWS" />
       {/* Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#FF6B6B] via-[#A855F7] to-[#06B6D4] z-50 origin-left"

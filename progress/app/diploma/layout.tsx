@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import Image from "next/image";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -37,6 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleAnalytics gaId="G-F8XEQPNCWS" />
       <body className={`font-sans antialiased`}>
         <div
           id="nav-placeholder"

@@ -2,7 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -39,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleTagManager gtmId="G-F8XEQPNCWS" />
+      <GoogleAnalytics gaId="G-F8XEQPNCWS" />
       <body className={`font-sans antialiased`}>{children}</body>
     </html>
   );
